@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" xmlns:th ="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div th:if="${message}" class="alert alert-success">
+    <p th:text="${message}"></p>
+</div>
+<div class="row">
+    <h3>Danh sách của: <span th:text="${ownerName}"></span></h3>
+    <div class="text-right">
+        <a href="?lang=vi" class="btn btn-sm btn-outline-primary">VI</a>
+        <a href="?lang=en" class="btn btn-sm btn-outline-success">EN</a>
+    </div>
+</div>
+
+<a name="" id="" class="btn btn-primary" th:href="@{|/add|}" role="button" th:text="#{add}"></a>
+<table class="table table-striped w-full" >
+    <thead class="thead-inverse">
+    <tr>
+        <th>ID</th>
+        <th th:text="#{content}"></th>
+        <th th:text="#{duedate}"></th>
+        <th th:text="#{status}"></th>
+        <th th:text="#{priority}"></th>
+        <th th:text="#{action}"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="t:${todos}">
+        <td scope="row" th:text="${t.id}"></td>
+        <td th:text="${t.content}"></td>
+        <td th:text="${#temporals.format(t.dueDate, 'dd/MM/yyyy')}"></td>
+        <td th:text="${t.status} ? #{status_true} : #{status_false}"></td>
+        <td th:text="#{'priority_' + ${t.priority.toLowerCase()}}"></td>
+        <td>
+            <a name="" id="" class="btn btn-primary" th:href="@{|todos/edit/${t.id}|}" role="button" th:text="#{edit}"></a>
+            <a name="" id="" class="btn" th:onclick="return confirm('Bạn có muốn xóa task không')" th:href="@{|todos/delete/${t.id}|}" role="button" th:text="#{delete}"></a>
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
