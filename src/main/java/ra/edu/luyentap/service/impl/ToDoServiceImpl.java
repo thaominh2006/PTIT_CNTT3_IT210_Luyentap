@@ -28,4 +28,20 @@ public class ToDoServiceImpl implements ToDoService {
 
         todoRepository.save(todo);
     }
+
+    @Override
+    public void deleteTodo(Long id) {
+        todoRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateTodo(ToDoDTO newTodo) {
+        ToDo updateTodo = new ToDo();
+        updateTodo.setId(newTodo.getId());
+        updateTodo.setContent(newTodo.getContent());
+        updateTodo.setDueDate(newTodo.getDueDate());
+        updateTodo.setPriority(newTodo.getPriority());
+        updateTodo.setStatus(newTodo.isStatus());
+        todoRepository.save(updateTodo);
+    }
 }

@@ -9,4 +9,6 @@ public interface ToDoService {
     List<ToDo> getAllTodo();
 
     void addTodo(ToDoDTO newTodo);
+    void updateTodo(ToDoDTO newTodo);
+    void deleteTodo(Long id);
 }

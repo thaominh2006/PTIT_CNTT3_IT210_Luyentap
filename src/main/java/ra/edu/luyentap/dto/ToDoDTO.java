@@ -21,5 +21,7 @@ public class ToDoDTO {
     @FutureOrPresent(message = "Ngày phải từ hôm nay trở đi!")
     private LocalDate dueDate;
 
+    private boolean status;
+    @NotNull(message = "Không được để trống trạng thái")
     private String priority;
 }

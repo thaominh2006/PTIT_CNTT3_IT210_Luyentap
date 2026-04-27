@@ -1,9 +1,12 @@
 package ra.edu.luyentap.model;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 import java.time.LocalDate;
 
@@ -22,6 +25,7 @@ public class ToDo {
     private String content;
 
     @Column(name = "dueDate")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dueDate;
 
     @Column(name = "status")
